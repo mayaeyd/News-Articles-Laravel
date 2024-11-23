@@ -34,11 +34,17 @@ class NewsController extends Controller
             ],403);
         }
 
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('news-images', 'public');
+        }
+
         News::create([
             "title"=>$request->title,
             "content"=>$request->content,
             "age_restrction"=>$request->age_restriction,
             'admin_id' => $user->id,
+            'image_path'=>$imagePath
         ]);
         return response()->json([
             "message"=>"News post created successfully"

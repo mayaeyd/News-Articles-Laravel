@@ -10,7 +10,8 @@ class News extends Model
         "title",
         "content",
         "admin_id",
-        "age_restrction"
+        "age_restrction",
+        "image_path"
     ];
 
     public function author(){
