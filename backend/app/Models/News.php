@@ -9,12 +9,12 @@ class News extends Model
     protected $fillable = [
         "title",
         "content",
-        "author_id",
-        "age_restriction"
+        "admin_id",
+        "age_restrction"
     ];
 
     public function author(){
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class, 'admin_id');
     }
 
     public function articles()
