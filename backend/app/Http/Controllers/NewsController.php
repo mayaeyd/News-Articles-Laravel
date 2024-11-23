@@ -27,6 +27,7 @@ class NewsController extends Controller
 
     function post_news(Request $request){
         $user = User::find(1);
+        $imagePath = null;
 
         if($user->role !== 'admin'){
             return response()->json([
@@ -34,7 +35,6 @@ class NewsController extends Controller
             ],403);
         }
 
-        $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('news-images', 'public');
         }

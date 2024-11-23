@@ -10,6 +10,7 @@ class Article extends Model
         'content',
         'news_id',
         'user_id',
+        'image_path'
     ];
 
     public function news(){
