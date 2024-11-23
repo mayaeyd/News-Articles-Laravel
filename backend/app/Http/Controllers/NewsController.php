@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\User;
 
 class NewsController extends Controller
 {
@@ -15,13 +16,19 @@ class NewsController extends Controller
     }
 
     function post_news(Request $request){
-        $adminId = 1;
+        $user = User::find(1);
+
+        if($user->role !== 'admin'){
+            return response()->json([
+                "error"=>"Unauthorized action"
+            ],403);
+        }
 
         News::create([
             "title"=>$request->title,
             "content"=>$request->content,
             "age_restrction"=>$request->age_restriction,
-            'admin_id' => $adminId,
+            'admin_id' => $user->id,
         ]);
         return response()->json([
             "message"=>"News post created successfully"
