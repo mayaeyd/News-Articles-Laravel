@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->string("content");
             $table->integer("age_restrction")->nullable();
-            $table->foreignId("admin_id")->constrained('users');
+            $table->foreignId("admin_id")->constrained("users")->onDelete("cascade");
             $table->timestamps();
         });
     }
