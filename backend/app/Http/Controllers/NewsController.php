@@ -8,8 +8,18 @@ use App\Models\User;
 
 class NewsController extends Controller
 {
-    function get_news(){
-        $news = News::all();
+    function get_news(Request $request){
+        $age = $request->age ?? null;
+
+        if($age){
+            $news = News::where('age_restrction', '<=', $age)
+                    ->orWhereNull('age_restrction')
+                    ->get();
+        }else{
+            $news = News::all();
+        }
+
+        
         return response()->json([
             "news"=>$news
         ]);
