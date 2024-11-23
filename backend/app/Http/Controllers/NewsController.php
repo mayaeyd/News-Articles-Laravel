@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    function test_api(){
+    function get_news(){
         return response()->json([
             "message"=>"Hello World!"
         ]);
