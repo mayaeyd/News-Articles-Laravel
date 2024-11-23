@@ -46,4 +46,20 @@ class NewsController extends Controller
             "updated-news"=>$news
         ]);
     }
+
+    function remove_news(Request $request, $id){
+        $news = News::find($id);
+
+        if(!$news){
+            return response()->json([
+                "message"=>"News post not found"
+            ], 404);
+        }
+
+        $news->delete();
+
+        return response()->json([
+            "deleted news"=>$news
+        ]);
+    }
 }
