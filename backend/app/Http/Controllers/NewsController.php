@@ -27,4 +27,17 @@ class NewsController extends Controller
             "message"=>"News post created successfully"
         ]);
     }
+
+    function edit_news(Request $request, $id){
+        $news = News::find($id);
+
+        $news->update([
+            "title"=>$request->title,
+            "content"=>$request->content,
+            "age_restrction"=>$request->age_restriction,
+        ]);
+        return response()->json([
+            "updated-news"=>$news
+        ]);
+    }
 }
