@@ -31,6 +31,12 @@ class NewsController extends Controller
     function edit_news(Request $request, $id){
         $news = News::find($id);
 
+        if(!$news){
+            return response()->json([
+                "message"=>"News post not found"
+            ], 404);
+        }
+
         $news->update([
             "title"=>$request->title,
             "content"=>$request->content,
