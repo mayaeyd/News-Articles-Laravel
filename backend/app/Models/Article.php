@@ -9,7 +9,7 @@ class Article extends Model
     protected $fillable = [
         'content',
         'news_id',
-        'admin_id',
+        'user_id',
     ];
 
     public function news(){
@@ -17,6 +17,6 @@ class Article extends Model
     }
 
     public function author(){
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
